@@ -35,7 +35,7 @@ jobs:
     - name: Run integration test
       run: npm run test
 
-  security_test:
+  security_tests:
 
     runs-on: ubuntu-latest
 
@@ -52,6 +52,6 @@ jobs:
     - name: Install program dependencies
       run: npm ci
 
-    - name: Run intesecurity test
+    - name: Run intesecurity tests
       run: npm audit
   
