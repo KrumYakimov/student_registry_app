@@ -19,15 +19,39 @@ jobs:
     steps:
     - name: clone the GitHub repo on the machine
       uses: actions/checkout@v4
+
     - name: Use Node.js ${{matrix.node-version}}
       uses: actions/setup-node@v4
       with:
         node-version: ${{matrix.node-version}}
         cache: 'npm'
+
     - name: Install program dependencies
       run: npm ci
+
     - name: Start the app
       run: npm run start &
+
     - name: Run integration test
       run: npm run test
+
+  security_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: clone the GitHub repo on the machine
+      uses: actions/checkout@v4
+
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install program dependencies
+      run: npm ci
+
+    - name: Run intesecurity test
+      run: npm audit
   
